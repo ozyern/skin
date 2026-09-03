@@ -71,7 +71,10 @@ class SearchContainerView @JvmOverloads constructor(
         // Float the bar clear of the gesture bar instead of sitting flush on the screen edge.
         searchView?.let { bar ->
             (bar.layoutParams as? ViewGroup.MarginLayoutParams)?.let { lp ->
-                val wanted = insets.bottom + searchBarGap
+                // The drag layer is Insettable and already offsets its children by the
+                // navigation bar, so adding insets.bottom here lifted the bar a whole nav bar
+                // too high. Only the visual gap belongs in the margin.
+                val wanted = searchBarGap
                 if (lp.bottomMargin != wanted) {
                     lp.bottomMargin = wanted
                     bar.layoutParams = lp

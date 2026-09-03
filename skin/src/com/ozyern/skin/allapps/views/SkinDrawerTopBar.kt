@@ -94,9 +94,10 @@ class SkinDrawerTopBar @JvmOverloads constructor(
                 modifier = Modifier
                     .align(Alignment.Center)
                     .height(TRACK_HEIGHT)
+                    .width(TAB_WIDTH * 2 + TRACK_PADDING * 2)
                     .clip(trackShape),
             ) {
-                Row(Modifier.fillMaxSize(), verticalAlignment = Alignment.CenterVertically) {
+                Row(Modifier.fillMaxHeight(), verticalAlignment = Alignment.CenterVertically) {
                     Tab(
                         label = stringResource(R.string.skin_drawer_tab_all),
                         selected = !categories,
@@ -141,7 +142,7 @@ class SkinDrawerTopBar @JvmOverloads constructor(
                 .padding(TRACK_PADDING)
                 .clip(CircleShape)
                 .background(
-                    if (selected) scheme.onSurface.copy(alpha = 0.22f) else Color.Transparent,
+                    if (selected) scheme.onSurface.copy(alpha = 0.34f) else Color.Transparent,
                     CircleShape,
                 )
                 .clickable(onClick = onClick),

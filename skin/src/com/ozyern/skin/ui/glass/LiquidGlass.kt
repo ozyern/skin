@@ -4,9 +4,9 @@ import android.os.Build
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
@@ -98,7 +98,7 @@ fun GlassSurface(
             Modifier.background(fallbackFill, shape)
         }
 
-    Box(modifier = modifier.then(surface)) {
-        Box(Modifier.fillMaxSize(), content = content)
-    }
+    // Size to the caller's modifier and its content -- forcing fillMaxSize here stretched the
+    // All/Categories pill across the whole bar.
+    Box(modifier = modifier.then(surface), contentAlignment = Alignment.Center, content = content)
 }
