@@ -21,6 +21,7 @@ import com.kyant.backdrop.drawBackdrop
 import com.kyant.backdrop.effects.blur
 import com.kyant.backdrop.effects.lens
 import com.kyant.backdrop.highlight.Highlight
+import com.kyant.backdrop.shadow.Shadow
 
 /**
  * Liquid glass surfaces for the app drawer chrome.
@@ -81,6 +82,8 @@ fun GlassSurface(
     refractionHeight: Dp = 12.dp,
     refractionAmount: Dp = (-16).dp,
     highlightAlpha: Float = 0.35f,
+    shadowRadius: Dp = 12.dp,
+    shadowAlpha: Float = 0.35f,
     content: @Composable BoxScope.() -> Unit = {},
 ) {
     val surface =
@@ -92,7 +95,11 @@ fun GlassSurface(
                     blur(blurRadius.toPx())
                     lens(refractionHeight.toPx(), refractionAmount.toPx(), true, true)
                 },
-                highlight = { Highlight(alpha = highlightAlpha) },
+                // Highlight.Default carries the library's tuned rim width and blur. Building a
+                // Highlight from alpha alone left width and blur at their defaults and drew no
+                // rim at all, which is why the capsules read as flat fills.
+                highlight = { Highlight.Default },
+                shadow = { Shadow(radius = shadowRadius, alpha = shadowAlpha) },
             )
         } else {
             Modifier.background(fallbackFill, shape)

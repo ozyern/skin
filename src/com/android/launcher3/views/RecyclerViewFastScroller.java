@@ -507,8 +507,10 @@ public class RecyclerViewFastScroller extends View {
         if (mPopupVisible != visible) {
             mPopupVisible = visible;
             if (shouldUseLetterFastScroller()) {
-                mRv.getLetterList().animate().alpha(visible ? 1f : 0f)
-                        .setDuration(visible ? 200 : 150).start();
+                // Skin: the A-Z index is a permanent part of the drawer, so it is not faded out
+                // with the scroll popup; only the per-letter highlight follows the thumb.
+                mRv.getLetterList().animate().cancel();
+                mRv.getLetterList().setAlpha(1f);
             } else {
                 mPopupView.animate().cancel();
                 mPopupView.animate().alpha(visible ? 1f : 0f)

@@ -367,8 +367,9 @@ public class AllAppsRecyclerView extends FastScrollRecyclerView {
         mLetterList.addView(lastLetterListTextView);
         constraintTextViewsVertically(mLetterList, textViews);
         mLetterList.setVisibility(VISIBLE);
-        // Set the alpha to 0 to avoid the letter list being shown when it shouldn't be.
-        mLetterList.setAlpha(0);
+        // Skin: the index is part of the drawer's design, so it stays on screen rather than
+        // fading in only while scrolling.
+        mLetterList.setAlpha(1f);
     }
 
     private void constraintTextViewsVertically(ConstraintLayout constraintLayout,
