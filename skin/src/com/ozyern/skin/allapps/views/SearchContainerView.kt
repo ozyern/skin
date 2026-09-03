@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Rect
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.ViewGroup
 import android.view.View
 import android.widget.PopupMenu
 import com.ozyern.skin.allapps.SkinAlphabeticalAppsList
@@ -36,8 +37,35 @@ class SearchContainerView @JvmOverloads constructor(
     override fun getDrawerTopInset(): Int =
         if (topBar == null) 0 else topBarHeight + systemTopInset
 
+    /**
+     * The floating search bar is a child of the drag layer, not of this view, so nothing hides it
+     * when All Apps closes -- it was still drawn over the workspace. Mirror this view's alpha and
+     * visibility, both of which the state transition drives, onto the bar.
+     */
+    override fun setAlpha(alpha: Float) {
+        super.setAlpha(alpha)
+        searchView?.alpha = alpha
+    }
+
+    override fun setVisibility(visibility: Int) {
+        super.setVisibility(visibility)
+        searchView?.visibility = visibility
+    }
+
     override fun setInsets(insets: Rect) {
         super.setInsets(insets)
+
+        // Float the bar clear of the gesture bar instead of sitting flush on the screen edge.
+        searchView?.let { bar ->
+            (bar.layoutParams as? ViewGroup.MarginLayoutParams)?.let { lp ->
+                val gap = resources.getDimensionPixelSize(R.dimen.skin_drawer_search_bottom_margin)
+                val wanted = insets.bottom + gap
+                if (lp.bottomMargin != wanted) {
+                    lp.bottomMargin = wanted
+                    bar.layoutParams = lp
+                }
+            }
+        }
         // Keep the pinned bar clear of the status bar; the base class only insets the header
         // and the lists, which sit below it.
         if (systemTopInset != insets.top) {
