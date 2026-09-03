@@ -154,9 +154,14 @@ class SkinAppPredictor(private val context: Context) : StatsLogCompatManager.Sta
         val occupiedHotseatItems = predictionEngine.getOccupiedHotseatItems(dataModel)
         val excludedHotseatItems = occupiedHotseatItems + currentDismissedApps
 
+        // Ask for enough targets to fill every row the drawer's prediction section can show.
+        // Requesting a single row's worth left the second row permanently empty.
+        val predictionRows = context.resources
+            .getInteger(com.android.launcher3.R.integer.all_apps_prediction_rows)
+            .coerceAtLeast(1)
         val allAppsTargets = predictionEngine.compileAppTargets(
             allAppsCandidateRanked,
-            idp.numDatabaseAllAppsColumns,
+            idp.numDatabaseAllAppsColumns * predictionRows,
             currentDismissedApps,
         )
         val hotseatTargets = predictionEngine.compileAppTargets(

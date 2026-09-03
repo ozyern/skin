@@ -485,6 +485,7 @@ dependencies {
     }
 
     implementation libs.hoko.blur
+    implementation libs.kyant.liquidglass
 
     implementation libs.androidx.window
 
