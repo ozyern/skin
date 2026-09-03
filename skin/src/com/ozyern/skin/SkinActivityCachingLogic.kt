@@ -7,7 +7,7 @@ import android.os.Build
 import android.os.Build.VERSION
 import android.os.UserHandle
 import android.util.Log
-import com.ozyern.skin.icons.getCustomAppNameForComponent
+import app.lawnchair.icons.getCustomAppNameForComponent
 import com.ozyern.skin.preferences.PreferenceManager
 import com.android.launcher3.Flags.useNewIconForArchivedApps
 import com.android.launcher3.dagger.ApplicationContext

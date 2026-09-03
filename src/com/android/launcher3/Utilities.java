@@ -107,7 +107,7 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.function.Predicate;
 
-import com.ozyern.skin.icons.ExtendedBitmapDrawable;
+import app.lawnchair.icons.ExtendedBitmapDrawable;
 import com.ozyern.skin.preferences.PreferenceManager;
 
 /**

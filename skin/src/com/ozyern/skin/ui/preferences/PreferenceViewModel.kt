@@ -21,7 +21,7 @@ import android.content.Intent
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.ozyern.skin.icons.CustomAdaptiveIconDrawable
+import app.lawnchair.icons.CustomAdaptiveIconDrawable
 import com.ozyern.skin.ui.preferences.destinations.IconPackInfo
 import com.ozyern.skin.util.Constants.LAWNICONS_PACKAGE_NAME
 import com.ozyern.skin.util.getPackageVersionCode

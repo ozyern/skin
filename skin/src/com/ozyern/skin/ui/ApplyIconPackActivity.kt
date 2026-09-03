@@ -43,7 +43,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.ozyern.skin.icons.CustomAdaptiveIconDrawable
+import app.lawnchair.icons.CustomAdaptiveIconDrawable
 import com.ozyern.skin.preferences.PreferenceManager
 import com.ozyern.skin.ui.preferences.components.layout.PreferenceGroup
 import com.ozyern.skin.ui.preferences.components.layout.PreferenceTemplate

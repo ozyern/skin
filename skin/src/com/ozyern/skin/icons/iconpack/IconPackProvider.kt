@@ -6,10 +6,10 @@ import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Process
 import android.os.UserHandle
-import com.ozyern.skin.icons.ClockMetadata
-import com.ozyern.skin.icons.CustomAdaptiveIconDrawable
+import app.lawnchair.icons.ClockMetadata
+import app.lawnchair.icons.CustomAdaptiveIconDrawable
 import com.ozyern.skin.icons.picker.IconEntry
-import com.ozyern.skin.icons.shouldTransparentBGIcons
+import app.lawnchair.icons.shouldTransparentBGIcons
 import com.android.launcher3.dagger.ApplicationContext
 import com.android.launcher3.dagger.LauncherAppComponent
 import com.android.launcher3.dagger.LauncherAppSingleton

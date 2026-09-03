@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.pm.LauncherApps
 import android.graphics.drawable.Drawable
 import android.os.Process
-import com.ozyern.skin.icons.ClockMetadata
+import app.lawnchair.icons.ClockMetadata
 import com.ozyern.skin.icons.picker.IconEntry
 import com.ozyern.skin.icons.picker.IconPickerCategory
 import com.ozyern.skin.icons.picker.IconPickerItem

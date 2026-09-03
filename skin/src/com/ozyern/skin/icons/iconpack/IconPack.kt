@@ -3,7 +3,7 @@ package com.ozyern.skin.icons.iconpack
 import android.content.ComponentName
 import android.content.Context
 import android.graphics.drawable.Drawable
-import com.ozyern.skin.icons.ClockMetadata
+import app.lawnchair.icons.ClockMetadata
 import com.ozyern.skin.icons.picker.IconEntry
 import com.ozyern.skin.icons.picker.IconPickerCategory
 import com.ozyern.skin.icons.picker.IconPickerItem

@@ -12,7 +12,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.ozyern.skin.FeedBridge
-import com.ozyern.skin.icons.CustomAdaptiveIconDrawable
+import app.lawnchair.icons.CustomAdaptiveIconDrawable
 import com.ozyern.skin.preferences.getAdapter
 import com.ozyern.skin.preferences.preferenceManager
 import com.ozyern.skin.ui.preferences.components.controls.ListPreference

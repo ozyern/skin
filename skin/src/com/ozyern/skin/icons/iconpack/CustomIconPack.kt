@@ -9,8 +9,8 @@ import android.content.res.Resources
 import android.content.res.XmlResourceParser
 import android.graphics.drawable.Drawable
 import android.util.Xml
-import com.ozyern.skin.icons.ClockMetadata
-import com.ozyern.skin.icons.ExtendedBitmapDrawable
+import app.lawnchair.icons.ClockMetadata
+import app.lawnchair.icons.ExtendedBitmapDrawable
 import com.ozyern.skin.icons.picker.IconEntry
 import com.ozyern.skin.icons.picker.IconPickerCategory
 import com.ozyern.skin.icons.picker.IconPickerItem

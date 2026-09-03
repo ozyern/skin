@@ -34,7 +34,7 @@ import com.ozyern.skin.gestures.config.GestureHandlerConfig
 import com.ozyern.skin.gestures.handlers.SleepMode
 import com.ozyern.skin.gestures.type.GestureType
 import com.ozyern.skin.hotseat.HotseatMode
-import com.ozyern.skin.icons.CustomAdaptiveIconDrawable
+import app.lawnchair.icons.CustomAdaptiveIconDrawable
 import com.ozyern.skin.icons.shape.IconShape
 import com.ozyern.skin.icons.shape.IconShapeManager
 import com.ozyern.skin.predictions.PredictionMode

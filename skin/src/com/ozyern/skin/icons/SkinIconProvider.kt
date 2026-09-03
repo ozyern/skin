@@ -46,6 +46,7 @@ import com.android.launcher3.util.ComponentKey
 import com.android.launcher3.util.SafeCloseable
 import javax.inject.Inject
 import org.xmlpull.v1.XmlPullParser
+import app.lawnchair.icons.CustomAdaptiveIconDrawable
 
 @LauncherAppSingleton
 class SkinIconProvider @Inject constructor(
