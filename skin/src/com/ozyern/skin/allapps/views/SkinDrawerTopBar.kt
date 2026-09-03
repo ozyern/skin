@@ -3,14 +3,43 @@ package com.ozyern.skin.allapps.views
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
-import android.widget.ImageView
 import android.widget.FrameLayout
-import android.widget.TextView
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.ViewCompositionStrategy
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
+import com.ozyern.skin.ui.glass.GlassSurface
+import com.ozyern.skin.ui.glass.LiquidGlass
+import com.ozyern.skin.ui.theme.SkinTheme
 import com.android.launcher3.R
 
 /**
- * The pinned bar at the top of the app drawer: an "All / Categories" segmented pill plus an
- * overflow button. Purely a view -- it reports selection through [onTabSelected] and leaves the
+ * The pinned bar at the top of the app drawer: an "All / Categories" segmented pill on a liquid
+ * glass surface, plus an overflow button. Reports selection through [onTabSelected] and leaves the
  * data switching to the drawer.
  */
 class SkinDrawerTopBar @JvmOverloads constructor(
@@ -25,41 +54,110 @@ class SkinDrawerTopBar @JvmOverloads constructor(
     /** Invoked when the overflow button is tapped, with the button as the anchor. */
     var onOverflowClick: ((anchor: View) -> Unit)? = null
 
-    private lateinit var allTab: TextView
-    private lateinit var categoriesTab: TextView
-    private lateinit var overflow: ImageView
+    private val composeView = ComposeView(context).apply {
+        setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnDetachedFromWindow)
+    }
 
     var categoriesSelected: Boolean = false
         private set
 
-    override fun onFinishInflate() {
-        super.onFinishInflate()
-        allTab = findViewById(R.id.skin_tab_all)
-        categoriesTab = findViewById(R.id.skin_tab_categories)
-        overflow = findViewById(R.id.skin_drawer_overflow)
+    private var selectionState: ((Boolean) -> Unit)? = null
 
-        allTab.setOnClickListener { select(categories = false, notify = true) }
-        categoriesTab.setOnClickListener { select(categories = true, notify = true) }
-        overflow.setOnClickListener { onOverflowClick?.invoke(it) }
-
-        select(categories = false, notify = false)
+    init {
+        addView(composeView, LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT))
+        composeView.setContent { SkinTheme { BarContent() } }
     }
 
     /** Moves the selection without firing [onTabSelected]; used to restore state. */
-    fun setSelectedTab(categories: Boolean) = select(categories, notify = false)
-
-    private fun select(categories: Boolean, notify: Boolean) {
-        val changed = categoriesSelected != categories || !allTab.isSelected && !categoriesTab.isSelected
+    fun setSelectedTab(categories: Boolean) {
         categoriesSelected = categories
-        allTab.isSelected = !categories
-        categoriesTab.isSelected = categories
-        // Selected label carries more weight, matching the reference design.
-        allTab.alpha = if (categories) INACTIVE_ALPHA else 1f
-        categoriesTab.alpha = if (categories) 1f else INACTIVE_ALPHA
-        if (notify && changed) onTabSelected?.invoke(categories)
+        selectionState?.invoke(categories)
+    }
+
+    @Composable
+    private fun BarContent() {
+        var categories by remember { mutableStateOf(categoriesSelected) }
+        selectionState = { categories = it }
+
+        val scheme = MaterialTheme.colorScheme
+        val backdrop = LiquidGlass.rememberBackdrop(
+            tints = listOf(scheme.primary, scheme.tertiary, scheme.secondary),
+            base = scheme.surface.copy(alpha = 0.25f),
+        )
+        val trackShape = CircleShape
+
+        Box(Modifier.fillMaxSize()) {
+            GlassSurface(
+                backdrop = backdrop,
+                shape = trackShape,
+                fallbackFill = scheme.onSurface.copy(alpha = 0.14f),
+                modifier = Modifier
+                    .align(Alignment.Center)
+                    .height(TRACK_HEIGHT)
+                    .clip(trackShape),
+            ) {
+                Row(Modifier.fillMaxSize(), verticalAlignment = Alignment.CenterVertically) {
+                    Tab(
+                        label = stringResource(R.string.skin_drawer_tab_all),
+                        selected = !categories,
+                    ) {
+                        categories = false
+                        categoriesSelected = false
+                        onTabSelected?.invoke(false)
+                    }
+                    Tab(
+                        label = stringResource(R.string.skin_drawer_tab_categories),
+                        selected = categories,
+                    ) {
+                        categories = true
+                        categoriesSelected = true
+                        onTabSelected?.invoke(true)
+                    }
+                }
+            }
+
+            Icon(
+                painter = painterResource(R.drawable.ic_skin_drawer_overflow),
+                contentDescription = stringResource(R.string.skin_drawer_overflow_description),
+                tint = scheme.onSurface,
+                modifier = Modifier
+                    .align(Alignment.CenterEnd)
+                    .padding(end = 8.dp)
+                    .size(40.dp)
+                    .clip(CircleShape)
+                    .clickable { onOverflowClick?.invoke(this@SkinDrawerTopBar) }
+                    .padding(9.dp),
+            )
+        }
+    }
+
+    @Composable
+    private fun Tab(label: String, selected: Boolean, onClick: () -> Unit) {
+        val scheme = MaterialTheme.colorScheme
+        Box(
+            modifier = Modifier
+                .width(TAB_WIDTH)
+                .fillMaxHeight()
+                .padding(TRACK_PADDING)
+                .clip(CircleShape)
+                .background(
+                    if (selected) scheme.onSurface.copy(alpha = 0.22f) else Color.Transparent,
+                    CircleShape,
+                )
+                .clickable(onClick = onClick),
+            contentAlignment = Alignment.Center,
+        ) {
+            Text(
+                text = label,
+                color = scheme.onSurface.copy(alpha = if (selected) 1f else 0.7f),
+                style = MaterialTheme.typography.labelLarge,
+            )
+        }
     }
 
     private companion object {
-        const val INACTIVE_ALPHA = 0.7f
+        val TRACK_HEIGHT = 44.dp
+        val TAB_WIDTH = 108.dp
+        val TRACK_PADDING = 3.dp
     }
 }

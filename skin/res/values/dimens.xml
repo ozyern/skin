@@ -131,7 +131,7 @@
 
     <!-- Skin drawer: bottom-floating search bar -->
     <dimen name="skin_drawer_search_horizontal_margin">16dp</dimen>
-    <dimen name="skin_drawer_search_bottom_margin">24dp</dimen>
+    <dimen name="skin_drawer_search_bottom_margin">14dp</dimen>
     <dimen name="skin_drawer_search_elevation">2dp</dimen>
 
     <!-- Skin drawer: All/Categories top bar -->

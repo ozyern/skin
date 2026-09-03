@@ -33,6 +33,19 @@ class SearchContainerView @JvmOverloads constructor(
      * header's top margin and the list padding, so the bar never overlaps the first row.
      */
     private var systemTopInset = 0
+    private var systemBottomInset = 0
+
+    private val searchBarGap: Int
+        get() = resources.getDimensionPixelSize(R.dimen.skin_drawer_search_bottom_margin)
+
+    /**
+     * Computed from resources and insets rather than from the bar's measured height. The bar lives
+     * in the drag layer and is frequently unmeasured when the lists compute their padding, which
+     * left the last rows running underneath it.
+     */
+    override fun getFloatingSearchBarInset(): Int =
+        resources.getDimensionPixelSize(R.dimen.search_box_container_height) +
+            searchBarGap + systemBottomInset
 
     override fun getDrawerTopInset(): Int =
         if (topBar == null) 0 else topBarHeight + systemTopInset
@@ -58,8 +71,7 @@ class SearchContainerView @JvmOverloads constructor(
         // Float the bar clear of the gesture bar instead of sitting flush on the screen edge.
         searchView?.let { bar ->
             (bar.layoutParams as? ViewGroup.MarginLayoutParams)?.let { lp ->
-                val gap = resources.getDimensionPixelSize(R.dimen.skin_drawer_search_bottom_margin)
-                val wanted = insets.bottom + gap
+                val wanted = insets.bottom + searchBarGap
                 if (lp.bottomMargin != wanted) {
                     lp.bottomMargin = wanted
                     bar.layoutParams = lp
@@ -68,8 +80,9 @@ class SearchContainerView @JvmOverloads constructor(
         }
         // Keep the pinned bar clear of the status bar; the base class only insets the header
         // and the lists, which sit below it.
-        if (systemTopInset != insets.top) {
+        if (systemTopInset != insets.top || systemBottomInset != insets.bottom) {
             systemTopInset = insets.top
+            systemBottomInset = insets.bottom
             topBar?.let { bar ->
                 (bar.layoutParams as? LayoutParams)?.let { lp ->
                     lp.topMargin = insets.top
