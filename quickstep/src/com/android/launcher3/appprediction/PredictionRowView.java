@@ -59,6 +59,9 @@ public class PredictionRowView<T extends Context & ActivityContext>
 
     private final T mActivityContext;
     private int mNumPredictedAppsPerRow;
+    /** Upper bound on rows; the row actually used grows with the number of predictions. */
+    private int mMaxRows = 1;
+    private int mNumRows = 1;
     // Vertical padding of the icon that contributes to the expected cell height.
     private final int mVerticalPadding;
     // Extra padding that is used in the top app rows (prediction and search) that is not used in
@@ -86,6 +89,7 @@ public class PredictionRowView<T extends Context & ActivityContext>
     public PredictionRowView(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         setOrientation(LinearLayout.HORIZONTAL);
+        mMaxRows = Math.max(1, getResources().getInteger(R.integer.all_apps_prediction_rows));
 
         mFocusHelper = new SimpleFocusIndicatorHelper(this);
         mActivityContext = ActivityContext.lookupContext(context);
@@ -135,8 +139,38 @@ public class PredictionRowView<T extends Context & ActivityContext>
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(getExpectedHeight(),
-                MeasureSpec.EXACTLY));
+        int width = MeasureSpec.getSize(widthMeasureSpec);
+        int height = getExpectedHeight();
+        int cols = Math.max(1, mNumPredictedAppsPerRow);
+        int rows = Math.max(1, mNumRows);
+        int cellWidth = (width - getPaddingLeft() - getPaddingRight()) / cols;
+        int cellHeight = (height - getPaddingTop() - getPaddingBottom()) / rows;
+        for (int i = 0; i < getChildCount(); i++) {
+            View child = getChildAt(i);
+            if (child.getVisibility() == GONE) {
+                continue;
+            }
+            child.measure(MeasureSpec.makeMeasureSpec(cellWidth, MeasureSpec.EXACTLY),
+                    MeasureSpec.makeMeasureSpec(cellHeight, MeasureSpec.EXACTLY));
+        }
+        setMeasuredDimension(width, height);
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        int cols = Math.max(1, mNumPredictedAppsPerRow);
+        int rows = Math.max(1, mNumRows);
+        int cellWidth = (right - left - getPaddingLeft() - getPaddingRight()) / cols;
+        int cellHeight = (bottom - top - getPaddingTop() - getPaddingBottom()) / rows;
+        for (int i = 0; i < getChildCount(); i++) {
+            View child = getChildAt(i);
+            if (child.getVisibility() == GONE) {
+                continue;
+            }
+            int x = getPaddingLeft() + (i % cols) * cellWidth;
+            int y = getPaddingTop() + (i / cols) * cellHeight;
+            child.layout(x, y, x + cellWidth, y + cellHeight);
+        }
     }
 
     @Override
@@ -152,7 +186,8 @@ public class PredictionRowView<T extends Context & ActivityContext>
         int iconPadding = deviceProfile.getAllAppsProfile().getIconDrawablePaddingPx();
         int textHeight = Utilities.calculateTextHeight(
                 deviceProfile.getAllAppsProfile().getIconTextSizePx());
-        int totalHeight = iconHeight + iconPadding + textHeight + mVerticalPadding * 2;
+        int totalHeight = (iconHeight + iconPadding + textHeight) * Math.max(1, mNumRows)
+                + mVerticalPadding * 2;
         // Prediction row height will be 4dp bigger than the regular apps in A-Z list when two line
         // is not enabled. Otherwise, the extra height will increase by just the textHeight.
         int extraHeight = deviceProfile.inv.enableTwoLinesInAllApps
@@ -223,12 +258,16 @@ public class PredictionRowView<T extends Context & ActivityContext>
         if (mPredictionUiUpdatePaused) {
             return;
         }
-        if (getChildCount() != mNumPredictedAppsPerRow) {
-            while (getChildCount() > mNumPredictedAppsPerRow) {
+        int cols = Math.max(1, mNumPredictedAppsPerRow);
+        mNumRows = Math.min(mMaxRows,
+                Math.max(1, (mPredictedApps.size() + cols - 1) / cols));
+        int cellCount = cols * mNumRows;
+        if (getChildCount() != cellCount) {
+            while (getChildCount() > cellCount) {
                 removeViewAt(0);
             }
             LayoutInflater inflater = mActivityContext.getAppsView().getLayoutInflater();
-            while (getChildCount() < mNumPredictedAppsPerRow) {
+            while (getChildCount() < cellCount) {
                 BubbleTextView icon = (BubbleTextView) inflater.inflate(
                         R.layout.all_apps_prediction_row_icon, this, false);
                 icon.setOnClickListener(mActivityContext.getItemOnClickListener());
@@ -262,8 +301,8 @@ public class PredictionRowView<T extends Context & ActivityContext>
                 icon.setVisibility(View.VISIBLE);
                 WorkspaceItemInfo predictedItem = mPredictedApps.get(i);
                 predictedItem.rank = i;
-                predictedItem.cellX = i;
-                predictedItem.cellY = 0;
+                predictedItem.cellX = i % cols;
+                predictedItem.cellY = i / cols;
                 icon.applyFromWorkspaceItem(predictedItem);
             } else {
                 icon.setVisibility(predictionCount == 0 ? GONE : INVISIBLE);

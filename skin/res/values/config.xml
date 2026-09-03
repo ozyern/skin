@@ -190,4 +190,5 @@
     <item name="config_wallpaperMaxScale" format="float" type="dimen">1.10</item>
 
     <attr name="isOldGrid" format="boolean" />
+    <integer name="all_apps_prediction_rows">2</integer>
 </resources>

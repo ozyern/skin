@@ -1378,6 +1378,17 @@ public class DeviceProfile {
             hideWorkspaceLabelsIfNotEnoughSpace();
         }
 
+        // Skin: the all-apps cell height comes from the grid's fixed allAppsCellSize, which is
+        // sized for an icon *and* its label. With drawer labels turned off that reserved label
+        // space becomes dead gap between rows, so shrink the cell to fit just the icon.
+        if (getAllAppsProfile().getIconTextSizePx() == 0f) {
+            int tightCellHeight = getAllAppsProfile().getIconSizePx()
+                    + getAllAppsProfile().getIconDrawablePaddingPx() * 2;
+            if (tightCellHeight > 0 && tightCellHeight < getAllAppsProfile().getCellHeightPx()) {
+                mAllAppsProfile = getAllAppsProfile().copyWithCellHeightPx(tightCellHeight);
+            }
+        }
+
         if (inv.enableTwoLinesInAllApps
                 && !(mIsResponsiveGrid && getAllAppsProfile().getMaxAllAppsTextLineCount() == 2)) {
             // Add extra textHeight to the existing allAppsCellHeight.

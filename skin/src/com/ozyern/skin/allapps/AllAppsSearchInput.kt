@@ -131,6 +131,8 @@ class AllAppsSearchInput(context: Context, attrs: AttributeSet?) :
 
         qsbShell = ViewCompat.requireViewById(this, R.id.qsb_shell)
 
+        input.setHint(R.string.skin_drawer_search_hint)
+
         // Placeholder for the icon-style shortcut that sits beside the search pill.
         findViewById<android.widget.ImageView>(R.id.skin_drawer_color_button)?.setOnClickListener {
             context.startActivity(
@@ -297,7 +299,8 @@ class AllAppsSearchInput(context: Context, attrs: AttributeSet?) :
                     animatePadding(currentPaddingLeft, currentPaddingRight)
                 }
                 focusedResultTitle = ""
-                input.setHint("")
+                // Keep a resting "Search" label instead of an empty field.
+                input.setHint(R.string.skin_drawer_search_hint)
                 hint.text = ""
             }
 
