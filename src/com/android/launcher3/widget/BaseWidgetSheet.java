@@ -57,7 +57,7 @@ import com.android.launcher3.widget.picker.model.WidgetPickerDataProvider.Widget
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import app.lawnchair.theme.color.tokens.ColorTokens;
+import com.ozyern.skin.theme.color.tokens.ColorTokens;
 
 /**
  * Base class for various widgets popup

@@ -26,11 +26,11 @@ import java.util.Collections;
 import java.util.List;
 
 import com.hoko.blur.HokoBlur;
-import app.lawnchair.preferences2.PreferenceCacheExtensionsKt;
-import app.lawnchair.preferences.PreferenceManager;
-import app.lawnchair.preferences2.PreferenceManager2;
-import app.lawnchair.util.FileAccessManager;
-import app.lawnchair.util.FileAccessState;
+import com.ozyern.skin.preferences2.PreferenceCacheExtensionsKt;
+import com.ozyern.skin.preferences.PreferenceManager;
+import com.ozyern.skin.preferences2.PreferenceManager2;
+import com.ozyern.skin.util.FileAccessManager;
+import com.ozyern.skin.util.FileAccessState;
 
 public class LauncherRootView extends InsettableFrameLayout {
 

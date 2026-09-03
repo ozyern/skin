@@ -71,7 +71,7 @@ import com.android.launcher3.util.RunnableList;
 import com.android.launcher3.views.ActivityContext;
 import com.android.launcher3.views.BaseDragLayer;
 
-import app.lawnchair.icons.CustomAdaptiveIconDrawable;
+import com.ozyern.skin.icons.CustomAdaptiveIconDrawable;
 
 /** A custom view for rendering an icon, folder, shortcut or widget during drag-n-drop. */
 public abstract class DragView<T extends Context & ActivityContext> extends FrameLayout {

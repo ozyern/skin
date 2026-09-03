@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Modifications copyright 2025, Lawnchair
+ * Modifications copyright 2025, Skin
  */
 
 package com.android.launcher3;
@@ -255,7 +255,7 @@ import com.android.launcher3.util.WallpaperThemeManager;
 import com.android.launcher3.views.FloatingIconView;
 import com.android.launcher3.views.FloatingSurfaceView;
 import com.android.launcher3.views.OptionsPopupView;
-import app.lawnchair.views.EditModePageStrip;
+import com.ozyern.skin.views.EditModePageStrip;
 import com.android.launcher3.views.ScrimView;
 import com.android.launcher3.widget.LauncherAppWidgetHostView;
 import com.android.launcher3.widget.LauncherAppWidgetProviderInfo;
@@ -291,7 +291,7 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
-import app.lawnchair.LawnchairApp;
+import com.ozyern.skin.SkinApp;
 
 /**
  * Default launcher application.
@@ -1631,7 +1631,7 @@ public class Launcher extends StatefulActivity<LauncherState>
                     // Only change state, if not already the same. This prevents cancelling any
                     // animations running as part of resume
                     boolean animate = mStateManager.shouldAnimateStateChange();
-                    if (!LawnchairApp.isRecentsEnabled()) {
+                    if (!SkinApp.isRecentsEnabled()) {
                         animate &= alreadyOnHome;
                     }
                     mStateManager.goToState(NORMAL, animate);

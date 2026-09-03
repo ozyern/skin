@@ -19,4 +19,4 @@ keystore.properties
 __pycache__
 .vscode
 .fleet
-lawnWithQuickstep/release
+skinWithQuickstep/release

@@ -7,7 +7,7 @@ body:
     attributes:
       value: |
         > [!IMPORTANT]
-        > Lawnchair's issue tracker is maintained on a best-effort basis.
+        > Skin's issue tracker is maintained on a best-effort basis.
         > Due to limited resources, we do not guarantee that all issues will be triaged or checked by the developers.
 
         Thanks for taking the time to file this issue! Here are a few things to do before submitting:
@@ -68,7 +68,7 @@ body:
     attributes:
       label: App version
       description: |
-        Open Lawnchair settings > About to view the app version.
+        Open Skin settings > About to view the app version.
 
         On nightly builds, **long-press** the version name and paste the GitHub link here.
       placeholder: |

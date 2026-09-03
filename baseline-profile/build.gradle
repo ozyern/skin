@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace 'app.lawnchair.baseline'
+    namespace 'com.ozyern.skin.baseline'
 
     defaultConfig {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -14,7 +14,7 @@ android {
 
     flavorDimensions += ["app", "recents", "channel"]
     productFlavors {
-        lawn { dimension = "app" }
+        skin { dimension = "app" }
         withQuickstep { dimension = "recents" }
         github { dimension = "channel" }
         nightly { dimension = "channel" }

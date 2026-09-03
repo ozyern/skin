@@ -38,8 +38,8 @@ import com.android.launcher3.model.data.WorkspaceItemInfo;
 import com.android.launcher3.popup.PopupContainerWithArrow;
 import com.android.launcher3.views.BubbleTextHolder;
 
-import app.lawnchair.theme.color.tokens.ColorTokens;
-import app.lawnchair.util.DrawableUtilsKt;
+import com.ozyern.skin.theme.color.tokens.ColorTokens;
+import com.ozyern.skin.util.DrawableUtilsKt;
 
 /**
  * A {@link android.widget.FrameLayout} that contains an icon and a {@link BubbleTextView} for text.

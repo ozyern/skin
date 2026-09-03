@@ -27,7 +27,7 @@ import android.widget.EditText;
 
 import com.android.launcher3.views.ActivityContext;
 
-import app.lawnchair.font.FontManager;
+import com.ozyern.skin.font.FontManager;
 import java.util.HashSet;
 import java.util.Set;
 

@@ -31,9 +31,9 @@ import com.android.launcher3.R;
 import com.android.launcher3.pageindicators.PageIndicator;
 import com.android.launcher3.views.ActivityContext;
 
-import app.lawnchair.font.FontManager;
-import app.lawnchair.theme.color.tokens.ColorStateListTokens;
-import app.lawnchair.theme.drawable.DrawableTokens;
+import com.ozyern.skin.font.FontManager;
+import com.ozyern.skin.theme.color.tokens.ColorStateListTokens;
+import com.ozyern.skin.theme.drawable.DrawableTokens;
 
 /**
  * Supports two indicator colors, dedicated for personal and work tabs.
@@ -52,7 +52,7 @@ public class PersonalWorkSlidingTabStrip extends LinearLayout implements PageInd
         typedArray.recycle();
     }
 
-    // Lawnchair: This function theme the work mode tab and toggle
+    // Skin: This function theme the work mode tab and toggle
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
@@ -61,7 +61,7 @@ public class PersonalWorkSlidingTabStrip extends LinearLayout implements PageInd
         for (int i = 0; i < getChildCount(); i++) {
             Button tab = (Button) getChildAt(i);
             tab.setAllCaps(false);
-            // Lawnchair-TODO: StateListDrawable
+            // Skin-TODO: StateListDrawable
 //            RippleDrawable background = (RippleDrawable) tab.getBackground();
 //            background.setDrawableByLayerId(android.R.id.mask, DrawableTokens.AllAppsTabsMaskDrawable.resolve(getContext()));
             tab.setBackground(DrawableTokens.AllAppsTabsBackground.resolve(getContext()));

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Modifications copyright 2025 Lawnchair
+ * Modifications copyright 2025 Skin
  */
 
 package com.android.launcher3;
@@ -58,17 +58,17 @@ import java.io.PrintWriter;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-import app.lawnchair.hotseat.DisabledHotseat;
-import app.lawnchair.hotseat.HotseatMode;
-import app.lawnchair.hotseat.HotseatPagedView;
-import app.lawnchair.hotseat.LawnchairHotseat;
-import app.lawnchair.preferences.PreferenceManager;
-import app.lawnchair.preferences2.PreferenceCacheExtensionsKt;
-import app.lawnchair.preferences2.PreferenceManager2;
+import com.ozyern.skin.hotseat.DisabledHotseat;
+import com.ozyern.skin.hotseat.HotseatMode;
+import com.ozyern.skin.hotseat.HotseatPagedView;
+import com.ozyern.skin.hotseat.SkinHotseat;
+import com.ozyern.skin.preferences.PreferenceManager;
+import com.ozyern.skin.preferences2.PreferenceCacheExtensionsKt;
+import com.ozyern.skin.preferences2.PreferenceManager2;
 
 /**
  * View class that represents the bottom dock of the home screen.
- * Hosts a {@link app.lawnchair.hotseat.HotseatPagedView} of icon grids plus an optional QSB.
+ * Hosts a {@link com.ozyern.skin.hotseat.HotseatPagedView} of icon grids plus an optional QSB.
  */
 public class Hotseat extends FrameLayout implements Insettable {
 
@@ -144,7 +144,7 @@ public class Hotseat extends FrameLayout implements Insettable {
         if (!hotseatMode.isAvailable(context)) {
             // The current hotseat mode is not available,
             // setting the hotseat mode to one that is always available
-            hotseatMode = LawnchairHotseat.INSTANCE;
+            hotseatMode = SkinHotseat.INSTANCE;
             com.patrykmichalik.opto.core.PreferenceExtensionsKt.setBlocking(preferenceManager2.getHotseatMode(), hotseatMode);
         }
         int layoutId = hotseatMode.getLayoutResourceId();

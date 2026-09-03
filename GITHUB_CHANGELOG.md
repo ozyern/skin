@@ -1,4 +1,4 @@
-Lawnchair 15 Beta 3 is here!
+Skin 15 Beta 3 is here!
 
 This release contains support for importing backups from Nova Launcher, which currently restores:
 

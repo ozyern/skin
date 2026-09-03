@@ -16,7 +16,7 @@
 ** See the License for the specific language governing permissions and
 ** limitations under the License.
 **
-** Modifications copyright 2021, Lawnchair
+** Modifications copyright 2021, Skin
 */
 -->
 <manifest
@@ -76,7 +76,7 @@
 
     <application
         android:backupAgent="com.android.launcher3.LauncherBackupAgent"
-        android:name="app.lawnchair.LawnchairApp"
+        android:name="com.ozyern.skin.SkinApp"
         android:fullBackupOnly="true"
         android:backupInForeground="true"
         android:fullBackupContent="@xml/backupscheme"

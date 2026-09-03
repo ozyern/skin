@@ -16,8 +16,8 @@
 
 package com.android.launcher3.util;
 
-import static app.lawnchair.wallpaper.WallpaperColorsCompat.HINT_SUPPORTS_DARK_TEXT;
-import static app.lawnchair.wallpaper.WallpaperColorsCompat.HINT_SUPPORTS_DARK_THEME;
+import static com.ozyern.skin.wallpaper.WallpaperColorsCompat.HINT_SUPPORTS_DARK_TEXT;
+import static com.ozyern.skin.wallpaper.WallpaperColorsCompat.HINT_SUPPORTS_DARK_THEME;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -36,14 +36,14 @@ import com.android.launcher3.Utilities;
 import com.android.launcher3.icons.GraphicsUtils;
 import com.android.launcher3.views.ActivityContext;
 
-import app.lawnchair.preferences2.PreferenceCacheExtensionsKt;
-import app.lawnchair.preferences.PreferenceManager;
-import app.lawnchair.preferences2.PreferenceManager2;
-import app.lawnchair.theme.color.ColorMode;
-import app.lawnchair.theme.color.tokens.ColorTokens;
-import app.lawnchair.wallpaper.WallpaperColorsCompat;
-import app.lawnchair.wallpaper.WallpaperManagerCompat;
-import app.lawnchair.ui.theme.ColorKt;
+import com.ozyern.skin.preferences2.PreferenceCacheExtensionsKt;
+import com.ozyern.skin.preferences.PreferenceManager;
+import com.ozyern.skin.preferences2.PreferenceManager2;
+import com.ozyern.skin.theme.color.ColorMode;
+import com.ozyern.skin.theme.color.tokens.ColorTokens;
+import com.ozyern.skin.wallpaper.WallpaperColorsCompat;
+import com.ozyern.skin.wallpaper.WallpaperManagerCompat;
+import com.ozyern.skin.ui.theme.ColorKt;
 
 /**
  * Various utility methods associated with theming.
@@ -109,7 +109,7 @@ public class Themes {
     }
 
     public static float getDialogCornerRadius(Context context) {
-        return context.getResources().getDimension(R.dimen.lawnchair_dialog_corner_radius);
+        return context.getResources().getDimension(R.dimen.skin_dialog_corner_radius);
     }
 
     public static float getDimension(Context context, int attr, float defaultValue) {

@@ -77,7 +77,7 @@ import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
-import app.lawnchair.compat.LawnchairQuickstepCompat;
+import com.ozyern.skin.compat.SkinQuickstepCompat;
 
 /**
  * This class tracked the top-most task and  some 'approximate' task history to allow faster
@@ -141,7 +141,7 @@ public class TopTaskTracker extends ISplitScreenListener.Stub implements TaskSta
 
     @Override
     public void onTaskMovedToFront(RunningTaskInfo taskInfo) {
-        if (LawnchairQuickstepCompat.ATLEAST_Q) {
+        if (SkinQuickstepCompat.ATLEAST_Q) {
             // LC-Note: RunningTaskInfo did not extend TaskInfo before Android Q. 
             // The Object cast prevents bytecode verifier from treating this as an unconditional 
             // upcast (VerifyError)
@@ -550,7 +550,7 @@ public class TopTaskTracker extends ISplitScreenListener.Stub implements TaskSta
                 return null;
             }
             List<TaskInfo> visibleNonExcludedTasks = mAllCachedTasks.stream()
-                    .filter(t -> LawnchairQuickstepCompat.ATLEAST_S && t.isVisible
+                    .filter(t -> SkinQuickstepCompat.ATLEAST_S && t.isVisible
                             && (t.baseIntent.getFlags() & FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS) == 0
                             && t.getActivityType() != ACTIVITY_TYPE_HOME
                             && t.getActivityType() != ACTIVITY_TYPE_RECENTS)

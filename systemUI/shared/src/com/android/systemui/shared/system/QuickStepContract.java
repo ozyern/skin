@@ -42,7 +42,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.StringJoiner;
 
-import app.lawnchair.compat.LawnchairQuickstepCompat;
+import com.ozyern.skin.compat.SkinQuickstepCompat;
 
 /**
  * Various shared constants between Launcher and SysUI as part of quickstep
@@ -426,7 +426,7 @@ public class QuickStepContract {
      */
     public static float getWindowCornerRadius(Context context) {
         // LC-Wrapped
-        if (sRecentsDisabled || !LawnchairQuickstepCompat.ATLEAST_S) {
+        if (sRecentsDisabled || !SkinQuickstepCompat.ATLEAST_S) {
             return 0;
         }
         if (sHasCustomCornerRadius) {

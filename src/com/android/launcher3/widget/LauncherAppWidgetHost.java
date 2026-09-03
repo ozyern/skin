@@ -24,7 +24,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 
-import app.lawnchair.LawnchairAppWidgetHostView;
+import com.ozyern.skin.SkinAppWidgetHostView;
 
 /**
  * Specific {@link AppWidgetHost} that creates our {@link LauncherAppWidgetHostView}

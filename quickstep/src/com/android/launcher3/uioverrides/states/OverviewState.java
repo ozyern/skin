@@ -39,8 +39,8 @@ import com.android.quickstep.util.LayoutUtils;
 import com.android.quickstep.views.RecentsView;
 import com.android.quickstep.views.TaskView;
 
-import app.lawnchair.preferences.PreferenceManager;
-import app.lawnchair.theme.color.tokens.ColorTokens;
+import com.ozyern.skin.preferences.PreferenceManager;
+import com.ozyern.skin.theme.color.tokens.ColorTokens;
 
 /**
  * Definition for overview state
@@ -167,8 +167,8 @@ public class OverviewState extends LauncherState {
 
     @Override
     public ScrimColors getWorkspaceScrimColor(Launcher launcher) {
-        // Lawnchair-TODO-Colour: Check overviewScrimForegroundPrimary and overviewScrimForegroundSecondary
-        // Lawnchair-TODO-Colour: Move to OverviewScrim
+        // Skin-TODO-Colour: Check overviewScrimForegroundPrimary and overviewScrimForegroundSecondary
+        // Skin-TODO-Colour: Move to OverviewScrim
         return new ScrimColors(
                 /* backgroundColor */ Themes.getAttrColor(launcher, ColorTokens.OverviewScrimOverBlur.resolveColor(launcher)),
                 /* foregroundColor */ ColorUtils.compositeColors(

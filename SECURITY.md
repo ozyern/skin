@@ -3,9 +3,9 @@
 ## Supported versions
 
 > [!WARNING]
-> [Lawnchair Legacy](https://play.google.com/store/apps/details?id=ch.deletescape.lawnchair.plah) is **unsupported**. Use the newer versions instead.
+> [Skin Legacy](https://play.google.com/store/apps/details?id=ch.deletescape.lawnchair.plah) is **unsupported**. Use the newer versions instead.
 
-The latest version of Lawnchair is the only supported version.
+The latest version of Skin is the only supported version.
 
 | Version        | Supported          |
 |----------------|--------------------|

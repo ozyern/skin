@@ -1,11 +1,11 @@
-# Lawnchair prebuilt libraries
+# Skin prebuilt libraries
 
 Launcher3 has some dependencies on internal AOSP modules. 
-To build Lawnchair, you have to build AOSP and obtain these JARs.
+To build Skin, you have to build AOSP and obtain these JARs.
 
 ## Usage
 
-Lawnchair relies on these JARs:
+Skin relies on these JARs:
 
 | File                       | Command                 | Android Tag                 | Target Configuration                               |
 |----------------------------|-------------------------|-----------------------------|----------------------------------------------------|

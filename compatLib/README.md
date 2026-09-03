@@ -1,6 +1,6 @@
-# Lawnchair Quickstep compat module
+# Skin Quickstep compat module
 
-The `compatLib` module provides a compatibility layer that lets Lawnchair integrate with Quickstep
+The `compatLib` module provides a compatibility layer that lets Skin integrate with Quickstep
 (a system component that provides the Recents screen) across different Android versions, even when
 the Quickstep implementation does not match the system version.
 

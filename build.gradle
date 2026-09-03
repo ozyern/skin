@@ -151,7 +151,7 @@ android {
     namespace "com.android.launcher3"
     defaultConfig {
         /*
-         * Lawnchair Launcher 16.0 Development 5.1
+         * Skin Launcher 16.0 Development 5.1
          * see CONTRIBUTING.md#versioning-scheme
          */
         versionCode 16_00_01_05_01
@@ -227,7 +227,7 @@ android {
 
         debug {
             applicationIdSuffix ".debug"
-            resValue("string", "derived_app_name", "Lawnchair (Debug)")
+            resValue("string", "derived_app_name", "Skin (Debug)")
 
             manifestPlaceholders.quickstepMinSdk = "0"
             manifestPlaceholders.quickstepMaxSdk = "100000"
@@ -236,7 +236,7 @@ android {
         }
 
         release {
-            resValue("string", "derived_app_name", "Lawnchair")
+            resValue("string", "derived_app_name", "Skin")
             minifyEnabled true
             shrinkResources true
             pseudoLocalesEnabled false
@@ -257,7 +257,7 @@ android {
     flavorDimensions += ["app", "recents", "channel"]
 
     productFlavors {
-        lawn {
+        skin {
             dimension "app"
         }
 
@@ -267,23 +267,23 @@ android {
         }
 
         github {
-            applicationId 'app.lawnchair'
+            applicationId 'com.ozyern.skin'
             dimension "channel"
         }
 
         nightly {
-            applicationId 'app.lawnchair.nightly'
+            applicationId 'com.ozyern.skin.nightly'
             dimension "channel"
         }
 
         play {
-            applicationId "app.lawnchair.play"
+            applicationId "com.ozyern.skin.play"
             dimension "channel"
             isDefault true
         }
 
         configureEach {
-            resValue("string", "launcher_component", "${applicationId}/app.lawnchair.LawnchairLauncher")
+            resValue("string", "launcher_component", "${applicationId}/com.ozyern.skin.SkinLauncher")
         }
     }
 
@@ -291,7 +291,7 @@ android {
         main {
             res.srcDirs = ['res']
 
-            // Lawnchair-TODO: Don't include Compose Disabled, but there's has to be another way of making this NOT long
+            // Skin-TODO: Don't include Compose Disabled, but there's has to be another way of making this NOT long
             java.srcDirs = ['src', 'src_plugins', 'compose/facade/core', 'compose/facade/enabled', 'compose/features']
             kotlin.directories.addAll('src', 'src_plugins', 'compose/facade/core', 'compose/facade/enabled', 'compose/features')
 
@@ -301,17 +301,17 @@ android {
             }
         }
 
-        lawn {
-            java.srcDirs = ['src_flags', 'src_shortcuts_overrides', 'lawnchair/src', 'tests/shared']
-            kotlin.directories.addAll('src_flags', 'src_shortcuts_overrides', 'lawnchair/src', 'tests/shared')
-            aidl.srcDirs = ['lawnchair/aidl']
-            res.srcDirs = ['lawnchair/res', 'platform_frameworks_libs_systemui/animationlib/res']
-            manifest.srcFile "lawnchair/AndroidManifest.xml"
+        skin {
+            java.srcDirs = ['src_flags', 'src_shortcuts_overrides', 'skin/src', 'tests/shared']
+            kotlin.directories.addAll('src_flags', 'src_shortcuts_overrides', 'skin/src', 'tests/shared')
+            aidl.srcDirs = ['skin/aidl']
+            res.srcDirs = ['skin/res', 'platform_frameworks_libs_systemui/animationlib/res']
+            manifest.srcFile "skin/AndroidManifest.xml"
             assets {
-                srcDirs 'lawnchair/assets'
+                srcDirs 'skin/assets'
             }
             proto {
-                srcDirs = ['lawnchair/protos/']
+                srcDirs = ['skin/protos/']
             }
         }
 
@@ -324,15 +324,15 @@ android {
             res.srcDirs = ["nightly/res"]
         }
 
-        lawnWithQuickstepGithub {
+        skinWithQuickstepGithub {
             manifest.srcFile "quickstep/AndroidManifest-launcher.xml"
         }
 
-        lawnWithQuickstepNightly {
+        skinWithQuickstepNightly {
             manifest.srcFile "quickstep/AndroidManifest-launcher.xml"
         }
 
-        lawnWithQuickstepPlay {
+        skinWithQuickstepPlay {
             manifest.srcFile "quickstep/AndroidManifest-launcher.xml"
         }
 
@@ -349,10 +349,10 @@ androidComponents {
     onVariants(selector().all()) { variant ->
         def channel = variant.productFlavors.last().second
         variant.outputs.forEach { output ->
-            output.outputFileName.set("Lawnchair.${output.versionName.get()}.$channel.${variant.buildType}.apk")
+            output.outputFileName.set("Skin.${output.versionName.get()}.$channel.${variant.buildType}.apk")
         }
 
-        // Lawnchair-TODO: A better way to sync proto file to the IDE preventing missing or outdated result. Please remove if this is the best solution we have right now
+        // Skin-TODO: A better way to sync proto file to the IDE preventing missing or outdated result. Please remove if this is the best solution we have right now
         def capitalizedVariantName = variant.name.substring(0, 1).toUpperCase(java.util.Locale.ROOT) + variant.name.substring(1)
         def generatedProtoJavaDir = layout.buildDirectory
             .dir("generated/java/generate${capitalizedVariantName}Proto/java")
@@ -514,7 +514,7 @@ spotless {
         removeUnusedImports()
     }
     kotlin {
-        target("lawnchair/src/**/*.kt")
+        target("skin/src/**/*.kt")
         ktlint(libs.ktlint.get().version).customRuleSets([
             libs.composeRules.get().toString()
         ]).editorConfigOverride([

@@ -107,8 +107,8 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.function.Predicate;
 
-import app.lawnchair.icons.ExtendedBitmapDrawable;
-import app.lawnchair.preferences.PreferenceManager;
+import com.ozyern.skin.icons.ExtendedBitmapDrawable;
+import com.ozyern.skin.preferences.PreferenceManager;
 
 /**
  * Various utilities shared amongst the Launcher's classes.

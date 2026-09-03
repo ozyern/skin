@@ -57,26 +57,26 @@ import com.android.launcher3.widget.util.WidgetSizeHandler;
 
 import javax.inject.Named;
 
-import app.lawnchair.DeviceProfileOverrides;
-import app.lawnchair.HeadlessWidgetsManager;
-import app.lawnchair.LawnchairActivityCachingLogic;
-import app.lawnchair.NotificationManager;
-import app.lawnchair.data.folder.service.FolderService;
-import app.lawnchair.data.iconoverride.IconOverrideRepository;
-import app.lawnchair.data.wallpaper.service.WallpaperService;
-import app.lawnchair.font.FontCache;
-import app.lawnchair.font.FontManager;
-import app.lawnchair.font.googlefonts.GoogleFontsListing;
-import app.lawnchair.icons.iconpack.IconPackProvider;
-import app.lawnchair.icons.shape.IconShapeManager;
-import app.lawnchair.preferences.PreferenceManager;
-import app.lawnchair.predictions.LawnchairPredictionManager;
-import app.lawnchair.preferences2.PreferenceManager2;
-import app.lawnchair.smartspace.provider.SmartspaceProvider;
-import app.lawnchair.theme.ThemeProvider;
-import app.lawnchair.ui.preferences.components.colorpreference.ColorPreferenceModelList;
-import app.lawnchair.ui.preferences.data.liveinfo.LiveInformationManager;
-import app.lawnchair.util.LawnchairWindowManagerProxy;
+import com.ozyern.skin.DeviceProfileOverrides;
+import com.ozyern.skin.HeadlessWidgetsManager;
+import com.ozyern.skin.SkinActivityCachingLogic;
+import com.ozyern.skin.NotificationManager;
+import com.ozyern.skin.data.folder.service.FolderService;
+import com.ozyern.skin.data.iconoverride.IconOverrideRepository;
+import com.ozyern.skin.data.wallpaper.service.WallpaperService;
+import com.ozyern.skin.font.FontCache;
+import com.ozyern.skin.font.FontManager;
+import com.ozyern.skin.font.googlefonts.GoogleFontsListing;
+import com.ozyern.skin.icons.iconpack.IconPackProvider;
+import com.ozyern.skin.icons.shape.IconShapeManager;
+import com.ozyern.skin.preferences.PreferenceManager;
+import com.ozyern.skin.predictions.SkinPredictionManager;
+import com.ozyern.skin.preferences2.PreferenceManager2;
+import com.ozyern.skin.smartspace.provider.SmartspaceProvider;
+import com.ozyern.skin.theme.ThemeProvider;
+import com.ozyern.skin.ui.preferences.components.colorpreference.ColorPreferenceModelList;
+import com.ozyern.skin.ui.preferences.data.liveinfo.LiveInformationManager;
+import com.ozyern.skin.util.SkinWindowManagerProxy;
 import dagger.BindsInstance;
 
 /**
@@ -127,9 +127,9 @@ public interface LauncherBaseAppComponent {
     WidgetSizeHandler getWidgetSizeHandler();
 
 
-    // Lawnchair-specific
+    // Skin-specific
     
-    LawnchairWindowManagerProxy getLWMP();
+    SkinWindowManagerProxy getLWMP();
     DeviceProfileOverrides getDPO();
     ThemeProvider getThemeProvider();
     SmartspaceProvider getSmartspaceProvider();
@@ -137,7 +137,7 @@ public interface LauncherBaseAppComponent {
     NotificationManager getNotificationManager();
     ColorPreferenceModelList getColorPreferenceModelList();
     LiveInformationManager getLiveInformationManager();
-    LawnchairPredictionManager getLawnchairPredictionManager();
+    SkinPredictionManager getSkinPredictionManager();
     PreferenceManager2 getPreferenceManager2();
     PreferenceManager getPreferenceManager();
     FontCache getFontCache();
@@ -148,7 +148,7 @@ public interface LauncherBaseAppComponent {
     WallpaperService getWallpaperService();
     IconOverrideRepository getIconOverrideRepository();
 
-    LawnchairActivityCachingLogic getLawnchairActivityCachingLogic();
+    SkinActivityCachingLogic getSkinActivityCachingLogic();
     FolderService getFolderService();
 
     /** Builder for LauncherBaseAppComponent. */

@@ -66,8 +66,8 @@ import com.android.launcher3.views.ScrimView;
 
 import com.google.android.msdl.data.model.MSDLToken;
 
-import app.lawnchair.preferences2.PreferenceManager2;
-import app.lawnchair.preferences2.PreferenceCacheExtensionsKt;
+import com.ozyern.skin.preferences2.PreferenceManager2;
+import com.ozyern.skin.preferences2.PreferenceCacheExtensionsKt;
 
 /**
  * Handles AllApps view transition.
