@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="skin_drawer_tab_track">#1F000000</color>
+    <color name="skin_drawer_tab_selected">#3D000000</color>
+    <color name="skin_drawer_tab_text">#DE000000</color>
+    <color name="skin_drawer_overflow_tint">#DE000000</color>
+</resources>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ozyern.skin.allapps.views.SkinDrawerTopBar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/skin_drawer_top_bar"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/skin_drawer_top_bar_height"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:clipChildren="false">
+
+    <!-- Spacer mirroring the overflow button so the pill stays optically centred. -->
+    <Space
+        android:layout_width="@dimen/skin_drawer_overflow_size"
+        android:layout_height="1dp" />
+
+    <LinearLayout
+        android:id="@+id/skin_drawer_tab_track"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/skin_drawer_tab_height"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:background="@drawable/skin_drawer_tab_track"
+        android:orientation="horizontal"
+        android:padding="@dimen/skin_drawer_tab_track_padding">
+
+        <TextView
+            android:id="@+id/skin_tab_all"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/skin_drawer_tab_selected"
+            android:gravity="center"
+            android:text="@string/skin_drawer_tab_all"
+            android:textColor="@color/skin_drawer_tab_text"
+            android:textSize="15sp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:focusable="true"
+            android:clickable="true" />
+
+        <TextView
+            android:id="@+id/skin_tab_categories"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/skin_drawer_tab_selected"
+            android:gravity="center"
+            android:text="@string/skin_drawer_tab_categories"
+            android:textColor="@color/skin_drawer_tab_text"
+            android:textSize="15sp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:focusable="true"
+            android:clickable="true" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/skin_drawer_overflow"
+        android:layout_width="@dimen/skin_drawer_overflow_size"
+        android:layout_height="@dimen/skin_drawer_overflow_size"
+        android:layout_gravity="center_vertical"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/skin_drawer_overflow_description"
+        android:padding="8dp"
+        android:src="@drawable/ic_skin_drawer_overflow" />
+</com.ozyern.skin.allapps.views.SkinDrawerTopBar>

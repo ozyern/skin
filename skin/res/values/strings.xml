@@ -1068,4 +1068,12 @@
     <string name="skin_action_failed">Failed to trigger action</string>
 
     <string name="please_wait">Please wait…</string>
+
+    <!-- Skin drawer tabs -->
+    <string name="skin_drawer_tab_all">All</string>
+    <string name="skin_drawer_tab_categories">Categories</string>
+    <string name="skin_drawer_overflow_description">Drawer options</string>
+
+    <string name="skin_drawer_menu_settings">Drawer settings</string>
+    <string name="skin_drawer_menu_hidden_apps">Hidden apps</string>
 </resources>

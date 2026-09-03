@@ -42,6 +42,18 @@ class SkinAlphabeticalAppsList<T>(
     private val prefs2 = PreferenceManager2.getInstance(context)
     private val prefs = PreferenceManager.getInstance(context)
 
+    /**
+     * Drives the drawer's "Categories" tab. Unlike the [PreferenceManager.drawerList] preference
+     * this is runtime-only, so flipping tabs re-groups the list in place instead of recreating
+     * the launcher.
+     */
+    var categoryMode: Boolean = false
+        set(value) {
+            if (field == value) return
+            field = value
+            onAppsUpdated()
+        }
+
     private val viewModel = FolderViewModel(
         (context as? ComponentActivity)?.application ?: context.launcher.application,
     )
@@ -94,7 +106,7 @@ class SkinAlphabeticalAppsList<T>(
         // Show app drawer folders only on main profile, to prevent state complexity
         if (isWorkOrPrivateSpace(appList)) return super.addAppsWithSections(appList, position)
 
-        if (!drawerListDefault) {
+        if (categoryMode || !drawerListDefault) {
             val validApps = appList.mapNotNull { it }
             val finalCategorizedApps = categorizeAppsWithSystemAndGoogle(validApps, context)
 
