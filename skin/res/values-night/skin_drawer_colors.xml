@@ -4,4 +4,6 @@
     <color name="skin_drawer_tab_selected">#66FFFFFF</color>
     <color name="skin_drawer_tab_text">#FFFFFFFF</color>
     <color name="skin_drawer_overflow_tint">#FFFFFFFF</color>
+    <color name="skin_glass_fill">#38FFFFFF</color>
+    <color name="skin_glass_stroke">#2EFFFFFF</color>
 </resources>

@@ -1,0 +1,13 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- Placeholder colour wheel: six arcs around a hollow centre. -->
+    <path android:fillColor="#E9445A" android:pathData="M12,2a10,10 0 0,1 8.66,5l-4.33,2.5A5,5 0 0,0 12,7Z" />
+    <path android:fillColor="#F5A524" android:pathData="M20.66,7a10,10 0 0,1 0,10l-4.33,-2.5a5,5 0 0,0 0,-5Z" />
+    <path android:fillColor="#3FB950" android:pathData="M20.66,17a10,10 0 0,1 -8.66,5v-5a5,5 0 0,0 4.33,-2.5Z" />
+    <path android:fillColor="#2F81F7" android:pathData="M12,22a10,10 0 0,1 -8.66,-5l4.33,-2.5A5,5 0 0,0 12,17Z" />
+    <path android:fillColor="#8957E5" android:pathData="M3.34,17a10,10 0 0,1 0,-10l4.33,2.5a5,5 0 0,0 0,5Z" />
+    <path android:fillColor="#DB61A2" android:pathData="M3.34,7A10,10 0 0,1 12,2v5A5,5 0 0,0 7.67,9.5Z" />
+</vector>

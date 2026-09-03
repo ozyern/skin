@@ -143,4 +143,7 @@
     <dimen name="skin_drawer_tab_track_padding">3dp</dimen>
     <dimen name="skin_drawer_overflow_size">40dp</dimen>
     <dimen name="skin_drawer_tab_max_width">280dp</dimen>
+    <dimen name="skin_glass_corner">28dp</dimen>
+    <dimen name="skin_drawer_color_button_size">52dp</dimen>
+    <dimen name="skin_drawer_search_gap">10dp</dimen>
 </resources>

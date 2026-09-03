@@ -147,7 +147,7 @@ public class QuickstepOnboardingPrefs {
                     }
                     launcher.getAppsView().getFloatingHeaderView()
                             .findFixedRowByType(AppsDividerView.class)
-                            .setShowAllAppsLabel(!ALL_APPS_VISITED_COUNT.hasReachedMax(launcher));
+                            .setShowAllAppsLabel(false);
                 }
             });
         }

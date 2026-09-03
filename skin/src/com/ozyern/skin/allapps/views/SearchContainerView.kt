@@ -1,6 +1,7 @@
 package com.ozyern.skin.allapps.views
 
 import android.content.Context
+import android.graphics.Rect
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -30,7 +31,26 @@ class SearchContainerView @JvmOverloads constructor(
      * Reserve room for the pinned All/Categories bar. The base class feeds this into both the
      * header's top margin and the list padding, so the bar never overlaps the first row.
      */
-    override fun getDrawerTopInset(): Int = if (topBar == null) 0 else topBarHeight
+    private var systemTopInset = 0
+
+    override fun getDrawerTopInset(): Int =
+        if (topBar == null) 0 else topBarHeight + systemTopInset
+
+    override fun setInsets(insets: Rect) {
+        super.setInsets(insets)
+        // Keep the pinned bar clear of the status bar; the base class only insets the header
+        // and the lists, which sit below it.
+        if (systemTopInset != insets.top) {
+            systemTopInset = insets.top
+            topBar?.let { bar ->
+                (bar.layoutParams as? LayoutParams)?.let { lp ->
+                    lp.topMargin = insets.top
+                    bar.layoutParams = lp
+                }
+            }
+            refreshDrawerPadding()
+        }
+    }
 
     override fun onFinishInflate() {
         super.onFinishInflate()

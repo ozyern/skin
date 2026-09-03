@@ -580,7 +580,7 @@ public final class FeatureFlagsImpl implements FeatureFlags {
 
 
     public boolean letterFastScroller() {
-        return false;
+        return true;
     }
 
     @Override

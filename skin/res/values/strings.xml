@@ -1076,4 +1076,5 @@
 
     <string name="skin_drawer_menu_settings">Drawer settings</string>
     <string name="skin_drawer_menu_hidden_apps">Hidden apps</string>
+    <string name="skin_drawer_color_button_description">Icon style</string>
 </resources>

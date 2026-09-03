@@ -131,6 +131,16 @@ class AllAppsSearchInput(context: Context, attrs: AttributeSet?) :
 
         qsbShell = ViewCompat.requireViewById(this, R.id.qsb_shell)
 
+        // Placeholder for the icon-style shortcut that sits beside the search pill.
+        findViewById<android.widget.ImageView>(R.id.skin_drawer_color_button)?.setOnClickListener {
+            context.startActivity(
+                com.ozyern.skin.ui.preferences.PreferenceActivity.createIntent(
+                    context,
+                    com.ozyern.skin.ui.preferences.navigation.GeneralIconPack,
+                ),
+            )
+        }
+
         qsbShell.apply {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnDetachedFromWindow)
 
