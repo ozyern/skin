@@ -8,12 +8,17 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.AbstractComposeView
+import androidx.compose.ui.unit.dp
 import com.ozyern.skin.ui.glass.GlassSurface
 import com.ozyern.skin.ui.glass.LiquidGlass
+import com.ozyern.skin.ui.theme.SkinTheme
 
 /**
- * A liquid glass panel used as the background of the drawer's search pill and colour button. It is
- * a plain background layer, so the existing search views stay as they are on top of it.
+ * The liquid glass panel behind the drawer's search pill and colour button.
+ *
+ * Deliberately more subdued than the All/Categories pill: the reference is a dark, near-neutral
+ * capsule lifted by a bright rim rather than a colourful refraction, so the backdrop is tinted
+ * with surface colours and the highlight carries most of the effect.
  */
 class SkinSearchGlassView @JvmOverloads constructor(
     context: Context,
@@ -23,16 +28,24 @@ class SkinSearchGlassView @JvmOverloads constructor(
 
     @Composable
     override fun Content() {
-        com.ozyern.skin.ui.theme.SkinTheme {
+        SkinTheme {
             val scheme = MaterialTheme.colorScheme
             GlassSurface(
                 backdrop = LiquidGlass.rememberBackdrop(
-                    tints = listOf(scheme.primary, scheme.secondary, scheme.tertiary),
-                    base = scheme.surface.copy(alpha = 0.25f),
+                    tints = listOf(
+                        scheme.surfaceVariant,
+                        scheme.surfaceContainerHighest,
+                        scheme.outlineVariant,
+                    ),
+                    base = scheme.surface,
                 ),
                 shape = CircleShape,
-                fallbackFill = scheme.onSurface.copy(alpha = 0.14f),
+                fallbackFill = scheme.surfaceVariant.copy(alpha = 0.72f),
                 modifier = Modifier.fillMaxSize(),
+                blurRadius = 12.dp,
+                refractionHeight = 10.dp,
+                refractionAmount = (-10).dp,
+                highlightAlpha = 0.5f,
             )
         }
     }
