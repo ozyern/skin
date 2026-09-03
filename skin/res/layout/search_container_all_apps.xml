@@ -116,7 +116,7 @@
             android:layout_height="@dimen/skin_drawer_color_button_size"
             android:layout_gravity="center_vertical"
             android:contentDescription="@string/skin_drawer_color_button_description"
-            android:padding="12dp"
+            android:padding="9dp"
             android:src="@drawable/ic_skin_color_wheel" />
         </FrameLayout>
     </LinearLayout>

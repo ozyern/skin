@@ -130,7 +130,7 @@
     <dimen name="aspect_ratio_portrait_and_square">1.05</dimen>
 
     <!-- Skin drawer: bottom-floating search bar -->
-    <dimen name="skin_drawer_search_horizontal_margin">16dp</dimen>
+    <dimen name="skin_drawer_search_horizontal_margin">14dp</dimen>
     <dimen name="skin_drawer_search_bottom_margin">14dp</dimen>
     <dimen name="skin_drawer_search_elevation">2dp</dimen>
 
@@ -144,6 +144,6 @@
     <dimen name="skin_drawer_overflow_size">40dp</dimen>
     <dimen name="skin_drawer_tab_max_width">280dp</dimen>
     <dimen name="skin_glass_corner">28dp</dimen>
-    <dimen name="skin_drawer_color_button_size">52dp</dimen>
-    <dimen name="skin_drawer_search_gap">10dp</dimen>
+    <dimen name="skin_drawer_color_button_size">40dp</dimen>
+    <dimen name="skin_drawer_search_gap">12dp</dimen>
 </resources>

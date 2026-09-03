@@ -80,9 +80,15 @@ class SkinDrawerTopBar @JvmOverloads constructor(
         selectionState = { categories = it }
 
         val scheme = MaterialTheme.colorScheme
+        // Neutral surface tints, matching the search bar. Accent-coloured blooms refracted into
+        // a milky gradient rather than the crisp dark track the design calls for.
         val backdrop = LiquidGlass.rememberBackdrop(
-            tints = listOf(scheme.primary, scheme.tertiary, scheme.secondary),
-            base = scheme.surface.copy(alpha = 0.25f),
+            tints = listOf(
+                scheme.surfaceVariant,
+                scheme.surfaceContainerHighest,
+                scheme.outlineVariant,
+            ),
+            base = scheme.surface,
         )
         val trackShape = CircleShape
 
@@ -90,7 +96,7 @@ class SkinDrawerTopBar @JvmOverloads constructor(
             GlassSurface(
                 backdrop = backdrop,
                 shape = trackShape,
-                fallbackFill = scheme.onSurface.copy(alpha = 0.14f),
+                fallbackFill = scheme.surfaceVariant.copy(alpha = 0.72f),
                 modifier = Modifier
                     .align(Alignment.Center)
                     .height(TRACK_HEIGHT)

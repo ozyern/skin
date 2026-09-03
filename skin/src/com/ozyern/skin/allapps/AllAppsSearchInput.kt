@@ -341,12 +341,12 @@ class AllAppsSearchInput(context: Context, attrs: AttributeSet?) :
     }
 
     private fun setupPadding() {
-        launcher.deviceProfile.let { dp ->
-            val padding = dp.getAllAppsIconStartMargin(context)
-            initialPaddingLeft = padding
-            initialPaddingRight = padding
-            setPadding(padding, paddingTop, padding, paddingBottom)
-        }
+        // The floating drawer bar owns its own horizontal inset; the icon start margin used for
+        // the docked search bar stacked on top of it and left the pill far too narrow.
+        val padding = resources.getDimensionPixelSize(R.dimen.skin_drawer_search_horizontal_margin)
+        initialPaddingLeft = padding
+        initialPaddingRight = padding
+        setPadding(padding, paddingTop, padding, paddingBottom)
     }
 
     private fun animateHintVisibility(visible: Boolean) {

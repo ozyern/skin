@@ -29,8 +29,9 @@ class SkinSearchUiDelegate(private val appsView: ActivityAllAppsContainerView<*>
 
         lp.width = ViewGroup.LayoutParams.MATCH_PARENT
         lp.height = res.getDimensionPixelSize(R.dimen.search_box_container_height)
-        lp.leftMargin = res.getDimensionPixelSize(R.dimen.skin_drawer_search_horizontal_margin)
-        lp.rightMargin = lp.leftMargin
+        // Horizontal inset comes from the view's own padding so it is applied exactly once.
+        lp.leftMargin = 0
+        lp.rightMargin = 0
         lp.bottomMargin = res.getDimensionPixelSize(R.dimen.skin_drawer_search_bottom_margin)
         (lp as? FrameLayout.LayoutParams)?.gravity = Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL
         searchBar.layoutParams = lp
