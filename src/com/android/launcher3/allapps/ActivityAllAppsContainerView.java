@@ -845,7 +845,8 @@ public class ActivityAllAppsContainerView<T extends Context & ActivityContext>
                 getCurrentPage(),
                 tabsHidden);
 
-        int padding = (hideSearchBar && !mUsingTabs) ? 0 : mHeader.getMaxTranslation();
+        final int padding = ((hideSearchBar && !mUsingTabs) ? 0 : mHeader.getMaxTranslation())
+                + getDrawerTopInset();
         mAH.forEach(adapterHolder -> {
             adapterHolder.mPadding.top = padding;
             adapterHolder.applyPadding();
@@ -862,6 +863,11 @@ public class ActivityAllAppsContainerView<T extends Context & ActivityContext>
             alignParentTop(mHeader, false /* includeTabsMargin */);
         } else {
             layoutBelowSearchContainer(mHeader, false /* includeTabsMargin */);
+        }
+        // Push the header below any launcher-specific bar pinned above it. The lists get the
+        // same space through their top padding, so this must not be applied to them as well.
+        if (mHeader.getLayoutParams() instanceof RelativeLayout.LayoutParams headerLp) {
+            headerLp.topMargin += getDrawerTopInset();
         }
     }
 
@@ -1085,6 +1091,46 @@ public class ActivityAllAppsContainerView<T extends Context & ActivityContext>
                         ? getContext().getResources().getDimensionPixelSize(
                         R.dimen.all_apps_header_pill_height)
                         : 0;
+    }
+
+    /**
+     * Space reserved at the very top of All Apps for a launcher-specific pinned bar. Returned by
+     * subclasses that add their own chrome above the header, so that both the header offset and
+     * the list padding account for it.
+     */
+    protected int getDrawerTopInset() {
+        return 0;
+    }
+
+    /** Height the floating search bar occupies at the bottom of the list, including its margin. */
+    protected int getFloatingSearchBarInset() {
+        if (mSearchContainer == null) {
+            return 0;
+        }
+        int height = mSearchContainer.getHeight();
+        if (height <= 0) {
+            // The floating bar lives in the drag layer and may not be measured yet when padding
+            // is first computed; fall back to its declared height so the last row is not covered.
+            height = getResources().getDimensionPixelSize(R.dimen.search_box_container_height);
+        }
+        if (mSearchContainer.getLayoutParams() instanceof ViewGroup.MarginLayoutParams mlp) {
+            height += mlp.bottomMargin;
+        }
+        return height;
+    }
+
+    /** Re-applies list padding; used once the floating search bar has been measured. */
+    public void refreshDrawerPadding() {
+        if (mHeader == null) {
+            return;
+        }
+        int padding = (isAppDrawerSearchBarHidden() && !mUsingTabs)
+                ? 0 : mHeader.getMaxTranslation();
+        padding += getDrawerTopInset();
+        for (AdapterHolder holder : mAH) {
+            holder.mPadding.top = padding;
+            holder.applyPadding();
+        }
     }
 
     private void removeCustomRules(View v) {
@@ -1871,7 +1917,7 @@ public class ActivityAllAppsContainerView<T extends Context & ActivityContext>
                     }
                 }
                 if (isSearchBarFloating()) {
-                    bottomOffset += mSearchContainer.getHeight();
+                    bottomOffset += getFloatingSearchBarInset();
                 }
                 mRecyclerView.setPadding(mPadding.left, mPadding.top, mPadding.right,
                         mPadding.bottom + bottomOffset);

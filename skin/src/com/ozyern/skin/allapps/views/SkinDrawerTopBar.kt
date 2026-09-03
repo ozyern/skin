@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.ImageView
-import android.widget.LinearLayout
+import android.widget.FrameLayout
 import android.widget.TextView
 import com.android.launcher3.R
 
@@ -17,7 +17,7 @@ class SkinDrawerTopBar @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0,
-) : LinearLayout(context, attrs, defStyleAttr) {
+) : FrameLayout(context, attrs, defStyleAttr) {
 
     /** Invoked with true when "Categories" is picked, false for "All". */
     var onTabSelected: ((categories: Boolean) -> Unit)? = null

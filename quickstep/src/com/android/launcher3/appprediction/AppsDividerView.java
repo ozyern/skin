@@ -92,7 +92,7 @@ public class AppsDividerView extends View implements FloatingHeaderRow {
         mAllAppsLabelTextColor = context.getColor(R.color.materialColorOnSurface);
 
         mAccessibilityManager = AccessibilityManager.getInstance(context);
-        setShowAllAppsLabel(!ALL_APPS_VISITED_COUNT.hasReachedMax(context));
+        setShowAllAppsLabel(false);
     }
 
     public void setup(FloatingHeaderView parent, FloatingHeaderRow[] rows, boolean tabsHidden) {

@@ -5,7 +5,6 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.PopupMenu
-import android.widget.RelativeLayout
 import com.ozyern.skin.allapps.SkinAlphabeticalAppsList
 import com.ozyern.skin.search.SkinSearchUiDelegate
 import com.ozyern.skin.ui.preferences.PreferenceActivity
@@ -22,7 +21,16 @@ class SearchContainerView @JvmOverloads constructor(
 
     private var topBar: SkinDrawerTopBar? = null
 
+    private val topBarHeight: Int
+        get() = resources.getDimensionPixelSize(R.dimen.skin_drawer_top_bar_height)
+
     override fun createSearchUiDelegate() = SkinSearchUiDelegate(this)
+
+    /**
+     * Reserve room for the pinned All/Categories bar. The base class feeds this into both the
+     * header's top margin and the list padding, so the bar never overlaps the first row.
+     */
+    override fun getDrawerTopInset(): Int = if (topBar == null) 0 else topBarHeight
 
     override fun onFinishInflate() {
         super.onFinishInflate()
@@ -30,8 +38,8 @@ class SearchContainerView @JvmOverloads constructor(
     }
 
     /**
-     * Adds the pinned All/Categories bar above the floating header. The search bar is floated to
-     * the bottom by [SkinSearchUiDelegate], which frees the top of the drawer for this.
+     * Adds the All/Categories bar above the header. The search bar is floated to the bottom by
+     * [SkinSearchUiDelegate], which frees the top of the drawer for it.
      */
     private fun addTopBar() {
         if (topBar != null) return
@@ -42,17 +50,8 @@ class SearchContainerView @JvmOverloads constructor(
         lp.addRule(ALIGN_PARENT_TOP)
         addView(bar, lp)
 
-        // The header normally sits below the search container; with search floated away it needs
-        // to sit below this bar instead.
-        findViewById<View>(R.id.all_apps_header)?.let { header ->
-            (header.layoutParams as? LayoutParams)?.let { hlp ->
-                hlp.addRule(BELOW, bar.id)
-                header.layoutParams = hlp
-            }
-        }
-
-        bar.onTabSelected = { categories -> setCategoryMode(categories) }
-        bar.onOverflowClick = { anchor -> showOverflowMenu(anchor) }
+        bar.onTabSelected = ::setCategoryMode
+        bar.onOverflowClick = ::showOverflowMenu
         topBar = bar
     }
 
@@ -64,17 +63,13 @@ class SearchContainerView @JvmOverloads constructor(
         PopupMenu(context, anchor).apply {
             menuInflater.inflate(R.menu.skin_drawer_overflow, menu)
             setOnMenuItemClickListener { item ->
-                when (item.itemId) {
-                    R.id.menu_drawer_settings -> {
-                        context.startActivity(PreferenceActivity.createIntent(context, AppDrawer))
-                        true
-                    }
-                    R.id.menu_hidden_apps -> {
-                        context.startActivity(PreferenceActivity.createIntent(context, AppDrawerHiddenApps))
-                        true
-                    }
-                    else -> false
+                val route = when (item.itemId) {
+                    R.id.menu_drawer_settings -> AppDrawer
+                    R.id.menu_hidden_apps -> AppDrawerHiddenApps
+                    else -> return@setOnMenuItemClickListener false
                 }
+                context.startActivity(PreferenceActivity.createIntent(context, route))
+                true
             }
             show()
         }
