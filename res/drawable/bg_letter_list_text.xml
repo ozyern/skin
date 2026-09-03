@@ -15,7 +15,9 @@
   -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="oval">
-    <solid android:color="@color/materialColorSurface" />
+    <!-- Skin: the index letters render plain; the opaque disc behind each one showed
+         as a dark box over the app grid. -->
+    <solid android:color="@android:color/transparent" />
     <corners android:radius="100dp"/>
     <size
         android:width="@dimen/bg_letter_list_text_size"

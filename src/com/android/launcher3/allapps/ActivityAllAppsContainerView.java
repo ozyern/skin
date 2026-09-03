@@ -1494,10 +1494,15 @@ public class ActivityAllAppsContainerView<T extends Context & ActivityContext>
 
     private void applyAdapterSideAndBottomPaddings(DeviceProfile grid) {
         int bottomPadding = Math.max(mInsets.bottom, mNavBarScrimHeight);
+        // Skin: the A-Z index is always on screen, so the grid has to stop short of it. Without
+        // this the last column was drawn underneath the letters.
+        final int letterGutter = (Flags.letterFastScroller() && showFastScroller)
+                ? getResources().getDimensionPixelSize(R.dimen.skin_drawer_letter_gutter)
+                : 0;
         mAH.forEach(adapterHolder -> {
             adapterHolder.mPadding.bottom = bottomPadding;
             adapterHolder.mPadding.left = grid.allAppsPadding.left;
-            adapterHolder.mPadding.right = grid.allAppsPadding.right;
+            adapterHolder.mPadding.right = grid.allAppsPadding.right + letterGutter;
             adapterHolder.applyPadding();
         });
     }
