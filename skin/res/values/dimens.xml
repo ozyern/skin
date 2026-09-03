@@ -146,5 +146,6 @@
     <dimen name="skin_glass_corner">28dp</dimen>
     <dimen name="skin_drawer_color_button_size">40dp</dimen>
     <dimen name="skin_drawer_search_gap">12dp</dimen>
-    <dimen name="skin_drawer_letter_gutter">22dp</dimen>
+    <dimen name="skin_drawer_letter_column_width">26dp</dimen>
+    <dimen name="skin_drawer_letter_gutter">34dp</dimen>
 </resources>
