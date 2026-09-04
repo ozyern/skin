@@ -30,6 +30,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -89,7 +90,7 @@ class SkinDrawerTopBar @JvmOverloads constructor(
                 scheme.surfaceContainerHighest,
                 scheme.outlineVariant,
             ),
-            base = scheme.surface,
+            base = colorResource(R.color.skin_drawer_tab_track),
         )
         val trackShape = CircleShape
 
@@ -106,7 +107,8 @@ class SkinDrawerTopBar @JvmOverloads constructor(
             GlassSurface(
                 backdrop = backdrop,
                 shape = trackShape,
-                fallbackFill = scheme.surfaceVariant.copy(alpha = 0.72f),
+                fallbackFill = colorResource(R.color.skin_drawer_tab_track),
+                highlightAlpha = 0.12f,
                 modifier = Modifier
                     .align(Alignment.Center)
                     .height(TRACK_HEIGHT)
@@ -158,7 +160,7 @@ class SkinDrawerTopBar @JvmOverloads constructor(
                 .padding(TRACK_PADDING)
                 .clip(CircleShape)
                 .background(
-                    if (selected) scheme.onSurface.copy(alpha = 0.34f) else Color.Transparent,
+                    if (selected) colorResource(R.color.skin_drawer_tab_selected) else Color.Transparent,
                     CircleShape,
                 )
                 .clickable(onClick = onClick),
@@ -166,7 +168,10 @@ class SkinDrawerTopBar @JvmOverloads constructor(
         ) {
             Text(
                 text = label,
-                color = scheme.onSurface.copy(alpha = if (selected) 1f else 0.7f),
+                color = colorResource(
+                    if (selected) R.color.skin_drawer_tab_text_selected
+                    else R.color.skin_drawer_tab_text,
+                ),
                 style = MaterialTheme.typography.labelLarge,
             )
         }

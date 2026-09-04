@@ -8,10 +8,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.AbstractComposeView
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import com.ozyern.skin.ui.glass.GlassSurface
 import com.ozyern.skin.ui.glass.LiquidGlass
 import com.ozyern.skin.ui.theme.SkinTheme
+import com.android.launcher3.R
 
 /**
  * The liquid glass panel behind the drawer's search pill and colour button.
@@ -37,7 +39,7 @@ class SkinSearchGlassView @JvmOverloads constructor(
                         scheme.surfaceContainerHighest,
                         scheme.outlineVariant,
                     ),
-                    base = scheme.surface,
+                    base = colorResource(R.color.skin_search_capsule),
                 ),
                 shape = CircleShape,
                 fallbackFill = scheme.surfaceVariant.copy(alpha = 0.72f),
@@ -45,7 +47,7 @@ class SkinSearchGlassView @JvmOverloads constructor(
                 blurRadius = 12.dp,
                 refractionHeight = 10.dp,
                 refractionAmount = (-10).dp,
-                highlightAlpha = 0.5f,
+                highlightAlpha = 0.18f,
             )
         }
     }

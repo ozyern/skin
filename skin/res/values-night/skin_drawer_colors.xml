@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="skin_drawer_tab_track">#33FFFFFF</color>
-    <color name="skin_drawer_tab_selected">#66FFFFFF</color>
-    <color name="skin_drawer_tab_text">#FFFFFFFF</color>
+    <color name="skin_drawer_tab_track">#E63A3A3C</color>
+    <color name="skin_drawer_tab_selected">#FFC9CDD2</color>
+    <color name="skin_drawer_tab_text">#FFE9E9EC</color>
+    <color name="skin_drawer_tab_text_selected">#FF17171A</color>
     <color name="skin_drawer_overflow_tint">#FFFFFFFF</color>
     <color name="skin_glass_fill">#38FFFFFF</color>
     <color name="skin_glass_stroke">#2EFFFFFF</color>
+    <color name="skin_search_capsule">#F02E2E31</color>
 </resources>

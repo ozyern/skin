@@ -56,7 +56,7 @@ object LiquidGlass {
             val fraction = (index + 1f) / (colors.size + 1f)
             drawCircle(
                 brush = Brush.radialGradient(
-                    colors = listOf(color.copy(alpha = 0.55f), Color.Transparent),
+                    colors = listOf(color.copy(alpha = 0.22f), Color.Transparent),
                     center = Offset(size.width * fraction, size.height * (0.35f + 0.3f * index)),
                     radius = size.minDimension * 1.1f,
                 ),
