@@ -26,6 +26,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
@@ -92,7 +93,16 @@ class SkinDrawerTopBar @JvmOverloads constructor(
         )
         val trackShape = CircleShape
 
-        Box(Modifier.fillMaxSize()) {
+        // Icons scroll underneath this pinned bar. Launcher3's header protection cannot help
+        // here: it returns early while allAppsBlur is on, and getHeaderBottom() reports a
+        // zero-height strip when the search bar is floating. Fade the strip out ourselves.
+        val scrim = Brush.verticalGradient(
+            0f to scheme.surface.copy(alpha = 0.92f),
+            0.65f to scheme.surface.copy(alpha = 0.55f),
+            1f to Color.Transparent,
+        )
+
+        Box(Modifier.fillMaxSize().background(scrim)) {
             GlassSurface(
                 backdrop = backdrop,
                 shape = trackShape,
