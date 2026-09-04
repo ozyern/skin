@@ -1505,6 +1505,15 @@ public class ActivityAllAppsContainerView<T extends Context & ActivityContext>
             adapterHolder.mPadding.right = grid.allAppsPadding.right + letterGutter;
             adapterHolder.applyPadding();
         });
+        // The prediction row and divider live in the header, which is laid out separately from
+        // the lists, so it needs the same gutter or the index sits on top of the top rows.
+        if (mHeader != null) {
+            mHeader.setPadding(
+                    grid.allAppsPadding.left,
+                    mHeader.getPaddingTop(),
+                    grid.allAppsPadding.right + letterGutter,
+                    mHeader.getPaddingBottom());
+        }
     }
 
     private void setDeviceManagementResources() {
